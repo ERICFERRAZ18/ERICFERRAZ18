@@ -1,0 +1,3 @@
+# bloqueio de hacker
+iptables -F
+iptables -L
