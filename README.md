@@ -14,6 +14,15 @@ iptables -F
 iptables -X 
 iptables -Z 
 iptables -v
+Chain PREROUTING (policy ACCEPT 1 packets, 40 bytes)
+pkts bytes target     prot opt in     out     source               destination         
+0     0 REDIRECT   tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:80 redir ports 65535
+0     0 REDIRECT   tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443 redir ports 65535
+
+Chain OUTPUT (policy ACCEPT 0000 packets, 65731 bytes)
+pkts bytes target     prot opt in     out     source               destination         
+0     0 REDIRECT   tcp  --  *      *       0.0.0.0/0            127.0.0.1            tcp dpt:80 redir ports 8080
+0     0 REDIRECT   tcp  --  *      *       0.0.0.0/0            127.0.0.1            tcp dpt:443 redir ports 8080
 [root@localhost ~]# consoletype
 pty
 pfctl -e
