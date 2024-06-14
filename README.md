@@ -10,7 +10,7 @@
 ERICFERRAZ18/ERICFERRAZ18 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
 You can click the Preview link to take a look at your changes.
 ---> # cortar vias
-iptables -F 
+iptables -L
 iptables -X 
 iptables -Z 
 iptables -v
