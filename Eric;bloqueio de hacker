@@ -1,6 +1,2 @@
-# bloqueio de hacker
-iptables -F
-iptables -L
-# passwd - 1 host
-# passwd --help
--l, --lock 
+# bloqueio de hackear
+iptables -L -F -A -D
