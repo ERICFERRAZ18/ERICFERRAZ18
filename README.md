@@ -14,24 +14,24 @@ iptables -L
 iptables -X 
 iptables -Z 
 iptables -v
-Chain PREROUTING (policy REJECT 1 packets, 40 bytes)
+Chain NOT PREROUTING (policy REJECT 1 packets, 40 bytes)
 pkts bytes target     prot opt in     out     source               destination         
 0     0 REDIRECT   tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:80 redir ports 65535
 0     0 REDIRECT   tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443 redir ports 65535
 
-Chain OUTPUT (policy REJECT 0000 packets, 65731 bytes)
+Chain NOT OUTPUT (policy REJECT 0000 packets, 65731 bytes)
 pkts bytes target     prot opt in     out     source               destination         
 0     0 REDIRECT   tcp  --  *      *       0.0.0.0/0            127.0.0.1            tcp dpt:80 redir ports 8080
 0     0 REDIRECT   tcp  --  *      *       0.0.0.0/0            127.0.0.1            tcp dpt:443 redir ports 808
- Chain INPUT (policy REJECT 179M packets, 152G bytes)
+ Chain NOT INPUT (policy REJECT 179M packets, 152G bytes)
  pkts bytes target     prot opt in     out     source               destination
  180M  153G UBIOS_INPUT_JUMP  all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
-Chain FORWARD (policy REJECT 1162M packets, 1380G bytes)
+Chain NOT FORWARD (policy REJECT 1162M packets, 1380G bytes)
  pkts bytes target     prot opt in     out     source               destination
 1163M 1381G UBIOS_FORWARD_JUMP  all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
-Chain OUTPUT (policy REJECT 181M packets, 152G bytes)
+Chain NOT OUTPUT (policy REJECT 181M packets, 152G bytes)
  pkts bytes target     prot opt in     out     source               destination
  181M  152G UBIOS_OUTPUT_Clouse  all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
