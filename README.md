@@ -14,28 +14,28 @@ iptables -L
 iptables -X 
 iptables -Z 
 iptables -v
-Chain PREROUTING (policy ACCEPT 1 packets, 40 bytes)
+Chain PREROUTING (policy REJECT 1 packets, 40 bytes)
 pkts bytes target     prot opt in     out     source               destination         
 0     0 REDIRECT   tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:80 redir ports 65535
 0     0 REDIRECT   tcp  --  eth0   *       0.0.0.0/0            0.0.0.0/0            tcp dpt:443 redir ports 65535
 
-Chain OUTPUT (policy ACCEPT 0000 packets, 65731 bytes)
+Chain OUTPUT (policy REJECT 0000 packets, 65731 bytes)
 pkts bytes target     prot opt in     out     source               destination         
 0     0 REDIRECT   tcp  --  *      *       0.0.0.0/0            127.0.0.1            tcp dpt:80 redir ports 8080
 0     0 REDIRECT   tcp  --  *      *       0.0.0.0/0            127.0.0.1            tcp dpt:443 redir ports 808
- Chain INPUT (policy ACCEPT 179M packets, 152G bytes)
+ Chain INPUT (policy REJECT 179M packets, 152G bytes)
  pkts bytes target     prot opt in     out     source               destination
  180M  153G UBIOS_INPUT_JUMP  all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
-Chain FORWARD (policy ACCEPT 1162M packets, 1380G bytes)
+Chain FORWARD (policy REJECT 1162M packets, 1380G bytes)
  pkts bytes target     prot opt in     out     source               destination
 1163M 1381G UBIOS_FORWARD_JUMP  all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
-Chain OUTPUT (policy ACCEPT 181M packets, 152G bytes)
+Chain OUTPUT (policy REJECT 181M packets, 152G bytes)
  pkts bytes target     prot opt in     out     source               destination
  181M  152G UBIOS_OUTPUT_Clouse  all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
-Chain UBIOS_FORWARD_IN_USER (1 references)
+Chain UBIOS_FORWARD_NOT_USER (1 references)
  pkts bytes target     prot opt in     out     source               destination
  457M  584G UBIOS_WAN_PF_IN_USER  all  --  eth4   *       0.0.0.0/0            0.0.0.0/0            /* 00000001095216663481 */
  457M  584G UBIOS_WAN_IN_USER  all  --  eth4   *       0.0.0.0/0            0.0.0.0/0            /* 00000001095216663482 */
@@ -45,13 +45,13 @@ Chain UBIOS_FORWARD_IN_USER (1 references)
  752K  396M UBIOS_GUEST_IN_USER  all  --  br10   *       0.0.0.0/0            0.0.0.0/0            /* 00000001095216663486 */
   52M   15G UBIOS_GUEST_IN_USER  all  --  br20   *       0.0.0.0/0            0.0.0.0/0            /* 00000001095216663487 */
 
-Chain UBIOS_FORWARD_JUMP (1 references)
+Chain UBIOS_FORWARD_CLOUSE (1 references)
  pkts bytes target     prot opt in     out     source               destination
  347M  414G UBIOS_FWD_IN_GEOIP_PRECHK  all  --  *      *       0.0.0.0/0            0.0.0.0/0
  347M  414G UBIOS_FWD_OUT_GEOIP_PRECHK  all  --  *      *       0.0.0.0/0            0.0.0.0/0
  347M  414G UBIOS_FORWARD_USER_HOOK  all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
-Chain UBIOS_FORWARD_OUT_USER (1 references)
+Chain UBIOS_FORWARD_OUT_NOT_USER (1 references)
  pkts bytes target     prot opt in     out     source               destination
  329M  288G UBIOS_WAN_PF_OUT_USER  all  --  *      eth4    0.0.0.0/0            0.0.0.0/0            /* 00000001095216663481 */
  329M  288G UBIOS_WAN_OUT_USER  all  --  *      eth4    0.0.0.0/0            0.0.0.0/0            /* 00000001095216663482 */
@@ -61,20 +61,20 @@ Chain UBIOS_FORWARD_OUT_USER (1 references)
 1340K 1667M UBIOS_GUEST_OUT_USER  all  --  *      br10    0.0.0.0/0            0.0.0.0/0            /* 00000001095216663486 */
   86M  101G UBIOS_GUEST_OUT_USER  all  --  *      br20    0.0.0.0/0            0.0.0.0/0            /* 00000001095216663487 */
 
-Chain UBIOS_FORWARD_USER_HOOK (1 references)
+Chain UBIOS_FORWARD_NOT_USER_HOOK (1 references)
  pkts bytes target     prot opt in     out     source               destination
 1163M 1381G UBIOS_FORWARD_IN_USER  all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* 00000001095216663481 */
 1162M 1380G UBIOS_FORWARD_OUT_USER  all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* 00000001095216663482 */
 
-Chain UBIOS_FWD_IN_GEOIP_PRECHK (1 references)
+Chain UBIOS_FWD_NOT_IN_GEOIP_PRECHK (1 references)
  pkts bytes target     prot opt in     out     source               destination
  127M  120G UBIOS_IN_GEOIP  all  --  eth4   *       0.0.0.0/0            0.0.0.0/0
 
-Chain UBIOS_FWD_OUT_GEOIP_PRECHK (1 references)
+Chain UBIOS_FWD_NOT_OUT_GEOIP_PRECHK (1 references)
  pkts bytes target     prot opt in     out     source               destination
  114M  151G UBIOS_OUT_GEOIP  all  --  *      eth4    0.0.0.0/0            0.0.0.0/0
 
-Chain UBIOS_GUEST_IN_USER (2 references)
+Chain UBIOS_GUEST_NOT_IN_USER (2 references)
  pkts bytes target     prot opt in     out     source               destination
  8632  605K RETURN     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 255 /* 00000001095216662480 */
     0     0 LOG        all  --  *      *       0.0.0.0/0            0.0.0.0/0            match-set UBIOS_6144fc439a3f340367486180 src match-set UBIOS_5f5f8979384ca905ec63b15c dst LOG flags 0 level 4
@@ -102,7 +102,7 @@ Chain UBIOS_GUEST_IN_USER (2 references)
 1167K  486M RETURN     all  --  *      *       192.168.20.0/24      0.0.0.0/0            /* 00000001095216666482 */
    50  6248 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* 00000001097364144127 */
 
-Chain UBIOS_GUEST_LOCAL_USER (2 references)
+Chain UBIOS_GUEST_LOCAL_NOT_USER (2 references)
  pkts bytes target     prot opt in     out     source               destination
 2419K  194M RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* 00000001095216662480 */
     0     0 RETURN     tcp  --  *      *       0.0.0.0/0            0.0.0.0/0            tcp dpt:53 /* 00000000004294970297 */
@@ -111,7 +111,7 @@ Chain UBIOS_GUEST_LOCAL_USER (2 references)
     0     0 RETURN     udp  --  *      *       0.0.0.0/0            0.0.0.0/0            udp spt:68 dpt:67 /* 00000000008589937595 */
     0     0 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* 00000001097364144127 */
 
-Chain UBIOS_GUEST_OUT_USER (2 references)
+Chain UBIOS_GUEST_NOT_OUT_USER (2 references)
  pkts bytes target     prot opt in     out     source               destination
   87M  103G RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED /* 00000001095216662480 */
  3665  319K LOG        all  --  *      *       0.0.0.0/0            0.0.0.0/0            match-set UBIOS_5f5f8979384ca905ec63b15c src match-set UBIOS_5f5f8979384ca905ec63b15c dst LOG flags 0 level 4
@@ -120,16 +120,16 @@ Chain UBIOS_GUEST_OUT_USER (2 references)
     0     0 RETURN     all  --  *      *       0.0.0.0/0            192.168.20.0/24      /* 00000001095216666482 */
     0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* 00000001097364144127 */
 
-Chain UBIOS_INPUT_GEOIP_PRECHK (1 references)
+Chain UBIOS_INPUT_NOT_GEOIP_PRECHK (1 references)
  pkts bytes target     prot opt in     out     source               destination
 1948K  182M UBIOS_IN_GEOIP  all  --  eth4   *       0.0.0.0/0            0.0.0.0/0
 
-Chain UBIOS_INPUT_JUMP (1 references)
+Chain UBIOS_NOT_INPUT_JUMP (1 references)
  pkts bytes target     prot opt in     out     source               destination
   55M   46G UBIOS_INPUT_GEOIP_PRECHK  all  --  *      *       0.0.0.0/0            0.0.0.0/0
   55M   46G UBIOS_INPUT_USER_HOOK  all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
-Chain UBIOS_INPUT_USER_HOOK (1 references)
+Chain UBIOS_NOT_INPUT_USER_HOOK (1 references)
  pkts bytes target     prot opt in     out     source               destination
 6220K  713M UBIOS_WAN_LOCAL_USER  all  --  eth4   *       0.0.0.0/0            0.0.0.0/0            /* 00000001095216663481 */
  964K   81M UBIOS_LAN_LOCAL_USER  all  --  br0    *       0.0.0.0/0            0.0.0.0/0            /* 00000001095216663482 */
@@ -138,7 +138,7 @@ Chain UBIOS_INPUT_USER_HOOK (1 references)
  870K   70M UBIOS_GUEST_LOCAL_USER  all  --  br10   *       0.0.0.0/0            0.0.0.0/0            /* 00000001095216663485 */
 1549K  124M UBIOS_GUEST_LOCAL_USER  all  --  br20   *       0.0.0.0/0            0.0.0.0/0            /* 00000001095216663486 */
 
-Chain UBIOS_IN_GEOIP (2 references)
+Chain UBIOS_NOT_IN_GEOIP (2 references)
  pkts bytes target     prot opt in     out     source               destination
     0     0 RETURN     all  --  *      *       0.0.0.0              0.0.0.0/0
     0     0 RETURN     all  --  *      *       255.255.255.255      0.0.0.0/0
@@ -158,7 +158,7 @@ Chain UBIOS_IN_GEOIP (2 references)
 25210 2359K DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            -m geoip --source-country CN
  509K   54M RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
-Chain UBIOS_LAN_IN_USER (3 references)
+Chain UBIOS_NOT_LAN_IN_USER (3 references)
  pkts bytes target     prot opt in     out     source               destination
 85277 6707K RETURN     icmp --  *      *       0.0.0.0/0            0.0.0.0/0            icmptype 255 /* 00000001095216662480 */
     0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            match-set UBIOS_5f5f8979384ca905ec63b15c src match-set UBIOS_5f6310ba1c017c0565ff114e dst /* 00000001095216662481 */
@@ -180,11 +180,11 @@ Chain UBIOS_LAN_IN_USER (3 references)
 26039 4472K RETURN     all  --  *      *       192.168.3.0/24       0.0.0.0/0            /* 00000001095216666483 */
     0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* 00000001097364144127 */
 
-Chain UBIOS_LAN_LOCAL_USER (3 references)
+Chain UBIOS_LAN_LOCAL_TO_NOT_USER (3 references)
  pkts bytes target     prot opt in     out     source               destination
 3882K 1244M RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* 00000001097364144127 */
 
-Chain UBIOS_LAN_OUT_USER (3 references)
+Chain UBIOS_LAN_NOT_OUT_USER (3 references)
  pkts bytes target     prot opt in     out     source               destination
  745M  989G RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED /* 00000001095216662480 */
     0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            match-set UBIOS_5f6310ba1c017c0565ff114e src match-set UBIOS_5f5f8979384ca905ec63b15c dst /* 00000001095216662481 */
@@ -194,13 +194,13 @@ Chain UBIOS_LAN_OUT_USER (3 references)
     0     0 RETURN     all  --  *      *       0.0.0.0/0            192.168.3.0/24       /* 00000001095216666483 */
     0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* 00000001097364144127 */
 
-Chain UBIOS_OUTPUT_JUMP (1 references)
+Chain UBIOS_NOT_OUTPUT_JUMP (1 references)
  pkts bytes target     prot opt in     out     source               destination
 
-Chain UBIOS_OUTPUT_USER_HOOK (0 references)
+Chain UBIOS_NOT_OUTPUT_USER_HOOK (0 references)
  pkts bytes target     prot opt in     out     source               destination
 
-Chain UBIOS_OUT_GEOIP (1 references)
+Chain UBIOS__NOT_OUT_GEOIP (1 references)
  pkts bytes target     prot opt in     out     source               destination
     0     0 RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0
     0     0 RETURN     all  --  *      *       0.0.0.0/0            255.255.255.255
@@ -220,7 +220,7 @@ Chain UBIOS_OUT_GEOIP (1 references)
  4754  640K DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            -m geoip --destination-country CN
  756K  202M RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0
 
-Chain UBIOS_WAN_IN_USER (1 references)
+Chain UBIOS_WAN_IN_NOT_USER (1 references)
  pkts bytes target     prot opt in     out     source               destination
  457M  584G RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED /* 00000001095216663481 */
     0     0 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate INVALID /* 00000001095216663482 */
@@ -237,20 +237,20 @@ Chain UBIOS_WAN_IN_USER (1 references)
    69  9130 RETURN     udp  --  *      *       0.0.0.0/0            25.0.0.151           udp dpt:3389 /* 00000000008589937603 */
     0     0 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* 00000001097364144127 */
 
-Chain UBIOS_WAN_LOCAL_USER (1 references)
+Chain UBIOS_WAN_LOCAL_TO_NOT_USER (1 references)
  pkts bytes target     prot opt in     out     source               destination
 4941K  574M RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate RELATED,ESTABLISHED /* 00000001095216663481 */
 48282 2139K DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            ctstate INVALID /* 00000001095216663482 */
 1231K  136M DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* 00000001097364144127 */
 
-Chain UBIOS_WAN_OUT_USER (1 references)
+Chain UBIOS_WAN_LOCATE_(1 references)
  pkts bytes target     prot opt in     out     source               destination
   849 44148 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            match-set UBIOS_5f5fb64f384ca905ec63b4ea dst /* 00000001095216662480 */
     0     0 DROP       all  --  *      *       0.0.0.0/0            0.0.0.0/0            match-set UBIOS_5f5f8979384ca905ec63b15c dst /* 00000001095216662481 */
   247 13404 REJECT     all  --  *      *       0.0.0.0/0            0.0.0.0/0            match-set UBIOS_5f8bcc47d508430616390bfe dst /* 00000001095216662482 */ reject-with icmp-port-unreachable
  329M  288G RETURN     all  --  *      *       0.0.0.0/0            0.0.0.0/0            /* 00000001097364144127 */
 
-Chain UBIOS_WAN_PF_IN_USER (1 references)
+Chain UBIOS_WAN_PF_IN_LOCATE (1 references)
  pkts bytes target     prot opt in     out     source               destination
  205K   19M RETURN     tcp  --  *      *       0.0.0.0/0            25.0.0.151           tcp dpt:143 /* 00000000004505618797 */
  1251 51548 RETURN     tcp  --  *      *       0.0.0.0/0            25.0.0.151           tcp dpt:3389 /* 00000000005345189507 */
@@ -264,7 +264,7 @@ Chain UBIOS_WAN_PF_IN_USER (1 references)
   346 14564 RETURN     tcp  --  *      *       0.0.0.0/0            25.0.0.151           tcp dpt:21 /* 00000000006342261859 */
     0     0 RETURN     udp  --  *      *       0.0.0.0/0            25.0.0.151           udp dpt:21 /* 00000000010637229155 */
 
-Chain UBIOS_WAN_PF_OUT_USER (1 references)
+Chain UBIOS_WAN_PF_DISABLE (1 references)
  pkts bytes target     prot opt in     out     source               destination
  427K  175M RETURN     tcp  --  *      *       25.0.0.151           0.0.0.0/0            tcp spt:143 /* 00000000004505618797 */
  1251 50040 RETURN     tcp  --  *      *       25.0.0.151           0.0.0.0/0            tcp spt:3389 /* 00000000005345189507 */
@@ -289,7 +289,7 @@ pfctl -sn # Display the current NAT rules
 pfctl -sr # Display the current filtering rules
 pfctl -ss # Display the current status table
 pfctl -si # Display filtering status and count
-pfctl -sa # display any displayable
+pfctl -sa # display any not displayable
 iptables -A INPUT -s 192.168.1.0/24 -p tcp --dport 22 -j ACCEPT
 iptables -I INPUT -j DROP -p tcp -s 0.0.0.0/0 -m string --algo kmp --string
 iptables -A INPUT -p tcp --syn -m limit --limit 5/second -j ACCEPT
