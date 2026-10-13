@@ -32,6 +32,7 @@ on:
 
 env:
   AWS_REGION: sa-east-1                   # Patos de Minas, Minas Gerais -> AWS Brazil (São Paulo) region
+  AWS_POSTAL_CODE_RANGE: "01000-000..05999-999"  # CEP range for São Paulo (requested)
   ECR_REPOSITORY: my-ecr-repo             # set this to your Amazon ECR repository name
   ECS_SERVICE: my-ecs-service             # set this to your Amazon ECS service name
   ECS_CLUSTER: my-ecs-cluster             # set this to your Amazon ECS cluster name
