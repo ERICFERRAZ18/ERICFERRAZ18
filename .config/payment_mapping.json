@@ -1,0 +1,14 @@
+{
+  "mappings": [
+    {
+      "type": "exact",
+      "pattern": "00020126360014BR.GOV.BCB.PIX0114+5511999999995204000053039865406100.005802BR5925NOME6009SAO PAULO62070503***6304ABCD",
+      "valor_override": 354632.94,
+      "liquidez": true,
+      "note": "Override from relatório de contas: 354.632,94"
+    }
+  ],
+  "defaults": {
+    "liquidez_threshold": 0.0
+  }
+}
