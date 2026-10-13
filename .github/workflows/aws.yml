@@ -31,7 +31,7 @@ on:
     branches: [ "main" ]
 
 env:
-  AWS_REGION: us-east-1                   # set this to your preferred AWS region, e.g. us-east-1
+  AWS_REGION: sa-east-1                   # Patos de Minas, Minas Gerais -> AWS Brazil (São Paulo) region
   ECR_REPOSITORY: my-ecr-repo             # set this to your Amazon ECR repository name
   ECS_SERVICE: my-ecs-service             # set this to your Amazon ECS service name
   ECS_CLUSTER: my-ecs-cluster             # set this to your Amazon ECS cluster name
